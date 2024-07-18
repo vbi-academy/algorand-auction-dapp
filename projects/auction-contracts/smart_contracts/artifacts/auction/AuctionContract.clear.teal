@@ -1,0 +1,7 @@
+#pragma version 10
+
+smart_contracts.auction.contract.AuctionContract.clear_state_program:
+    // smart_contracts/auction/contract.py:115
+    // return True
+    int 1
+    return
