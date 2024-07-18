@@ -1,0 +1,38 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - 'docs/**'
+      - '**.md'
+      - '.vscode/**'
+      - '.idea/**'
+
+permissions:
+  contents: read
+  packages: read
+
+jobs:
+  auction-contracts-validate:
+    name: Run auction-contracts release
+    secrets: inherit
+    uses: ./.github/workflows/auction-contracts-ci.yaml
+
+  auction-contracts-release:
+    name: Run auction-contracts release
+    secrets: inherit
+    uses: ./.github/workflows/auction-contracts-cd.yaml
+    needs: auction-contracts-validate
+
+  auction-frontend-validate:
+    name: Run auction-frontend release
+    secrets: inherit
+    uses: ./.github/workflows/auction-frontend-ci.yaml
+
+  auction-frontend-release:
+    name: Run auction-frontend release
+    secrets: inherit
+    uses: ./.github/workflows/auction-frontend-cd.yaml
+    needs: auction-frontend-validate

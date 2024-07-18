@@ -1,0 +1,14 @@
+name: Pull Request validation
+
+on: [pull_request]
+
+
+jobs:
+  auction-contracts-ci:
+    name: Run auction-contracts validation
+    uses: ./.github/workflows/auction-contracts-ci.yaml
+
+  auction-frontend-ci:
+    name: Run auction-frontend validation
+    uses: ./.github/workflows/auction-frontend-ci.yaml
+
